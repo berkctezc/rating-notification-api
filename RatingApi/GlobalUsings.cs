@@ -1,0 +1,9 @@
+global using Application;
+global using Application.Abstract;
+global using Core.Exceptions;
+global using Domain.Requests.Ratings;
+global using FluentValidation;
+global using Infrastructure;
+global using Microsoft.AspNetCore.Mvc;
+global using Persistence;
+global using RatingApi.Extensions;

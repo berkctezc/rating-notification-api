@@ -1,0 +1,6 @@
+namespace RatingApi;
+
+public class ServiceSettings
+{
+    public string ConnectionString { get; set; }
+}
