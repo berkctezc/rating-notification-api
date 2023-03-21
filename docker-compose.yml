@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    container_name: 'rabbitmq'
+    image: rabbitmq:3.8-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=berkcan
+      - RABBITMQ_DEFAULT_PASS=berkcan
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+  postgresql:
+    container_name: 'postgres'
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
