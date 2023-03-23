@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
+    [ExcludeFromCodeCoverage]
     public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
@@ -20,10 +19,7 @@ namespace Persistence.Migrations
                     Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     RatingNumber = table.Column<long>(type: "bigint", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ratings", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Ratings", x => x.Id); });
 
             migrationBuilder.CreateTable(
                 name: "ServiceProviders",
@@ -32,10 +28,7 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ServiceProviders", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_ServiceProviders", x => x.Id); });
 
             migrationBuilder.CreateTable(
                 name: "Users",
@@ -44,10 +37,7 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Users", x => x.Id); });
         }
 
         /// <inheritdoc />

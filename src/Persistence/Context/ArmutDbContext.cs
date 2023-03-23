@@ -1,5 +1,6 @@
 ﻿namespace Persistence.Context;
 
+[ExcludeFromCodeCoverage]
 public class ArmutDbContext : DbContext
 {
     public ArmutDbContext()

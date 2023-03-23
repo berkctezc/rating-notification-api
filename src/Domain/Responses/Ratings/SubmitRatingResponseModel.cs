@@ -1,5 +1,6 @@
 namespace Domain.Responses.Ratings;
 
+[ExcludeFromCodeCoverage]
 public class SubmitRatingResponseModel
 {
     public string Name { get; set; } = string.Empty;

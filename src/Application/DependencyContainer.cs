@@ -1,5 +1,6 @@
 namespace Application;
 
+[ExcludeFromCodeCoverage]
 public static class DependencyContainer
 {
     public static IServiceCollection RegisterApplication(this IServiceCollection services)

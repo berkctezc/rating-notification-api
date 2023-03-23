@@ -1,5 +1,6 @@
 namespace NotificationApi;
 
+[ExcludeFromCodeCoverage]
 public static class ServiceExtensions
 {
     public static IServiceCollection RegisterSettings(this IServiceCollection services)

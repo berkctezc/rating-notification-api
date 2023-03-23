@@ -1,5 +1,6 @@
 namespace Domain.Entities;
 
+[ExcludeFromCodeCoverage]
 public class Rating : IEntity
 {
     public Guid Id { get; set; }
@@ -10,6 +11,5 @@ public class Rating : IEntity
 
     public DateTime Date { get; set; }
 
-    [Range(1,10)]
-    public uint RatingNumber { get; set; }
+    [Range(1, 10)] public uint RatingNumber { get; set; }
 }

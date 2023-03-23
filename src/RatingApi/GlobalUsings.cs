@@ -1,3 +1,4 @@
+global using System.Diagnostics.CodeAnalysis;
 global using Application;
 global using Application.Abstract;
 global using Core.Exceptions;

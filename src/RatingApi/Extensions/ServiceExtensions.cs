@@ -1,5 +1,6 @@
 namespace RatingApi.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class ServiceExtensions
 {
     private static IConfigurationRoot BuildConfiguration(this IServiceCollection services)

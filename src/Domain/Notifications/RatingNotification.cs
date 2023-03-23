@@ -1,5 +1,6 @@
 namespace Domain.Notifications;
 
+[ExcludeFromCodeCoverage]
 public class RatingNotification
 {
     public string Name { get; set; } = string.Empty;

@@ -1,7 +1,6 @@
-using Infrastructure.Queue;
-
 namespace Infrastructure;
 
+[ExcludeFromCodeCoverage]
 public static class DependencyContainer
 {
     public static IServiceCollection RegisterPublisher(this IServiceCollection services)

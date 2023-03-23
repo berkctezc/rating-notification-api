@@ -1,7 +1,11 @@
+global using System;
+global using System.Diagnostics.CodeAnalysis;
 global using Bogus;
 global using Domain.Dtos;
 global using Domain.Entities;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Infrastructure;
+global using Microsoft.EntityFrameworkCore.Migrations;
 global using Microsoft.Extensions.Configuration;
 global using Persistence.Abstract;
 global using Persistence.Context;

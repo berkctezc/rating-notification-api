@@ -1,5 +1,6 @@
 namespace Persistence.Context;
 
+[ExcludeFromCodeCoverage]
 public static class SeedData
 {
     private static IEnumerable<User> GenerateUsers()

@@ -1,5 +1,6 @@
 namespace Domain.Dtos;
 
+[ExcludeFromCodeCoverage]
 public class SubmitRatingDto
 {
     public Guid UserId { get; set; }

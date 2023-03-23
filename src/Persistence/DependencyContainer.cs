@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Persistence;
 
+[ExcludeFromCodeCoverage]
 public static class DependencyContainer
 {
     public static IServiceCollection RegisterPersistence(this IServiceCollection services, string connectionString)

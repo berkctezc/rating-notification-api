@@ -1,3 +1,4 @@
+global using System.Diagnostics.CodeAnalysis;
 global using Application.Abstract;
 global using Application.Services;
 global using Application.Validators.RatingApi;
