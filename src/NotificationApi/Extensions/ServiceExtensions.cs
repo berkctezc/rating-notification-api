@@ -1,9 +1,9 @@
-namespace NotificationApi;
+namespace NotificationApi.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class ServiceExtensions
 {
-    public static IServiceCollection RegisterSettings(this IServiceCollection services)
+    private static IServiceCollection RegisterSettings(this IServiceCollection services)
     {
         var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -20,4 +20,18 @@ public static class ServiceExtensions
 
         return services;
     }
+
+    public static IServiceCollection RegisterNotificationApiServices(this IServiceCollection services)
+        => services
+            .AddEndpointsApiExplorer()
+            .AddSwaggerGen()
+            .RegisterSettings()
+            .RegisterConsumer()
+            .AddMiddlewares();
+
+    private static IServiceCollection AddMiddlewares(this IServiceCollection services)
+        => services
+            .AddScoped<ExceptionMiddleware>()
+            .AddSingleton<RateLimitingMiddleware>()
+            .AddScoped<LoggingMiddleware>();
 }

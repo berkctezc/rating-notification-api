@@ -32,9 +32,16 @@ public static class ServiceExtensions
             .RegisterPublisher()
             .AddEndpointsApiExplorer()
             .AddSwaggerGen()
+            .AddMiddlewares()
             .RegisterPersistence(settings.ConnectionString)
             .RegisterApplication();
 
         return services;
     }
+
+    private static IServiceCollection AddMiddlewares(this IServiceCollection services)
+        => services
+            .AddScoped<ExceptionMiddleware>()
+            .AddSingleton<RateLimitingMiddleware>()
+            .AddScoped<LoggingMiddleware>();
 }

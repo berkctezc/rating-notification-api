@@ -1,31 +1,18 @@
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
-services.AddEndpointsApiExplorer()
-    .AddSwaggerGen()
-    .RegisterSettings()
-    .RegisterConsumer();
+services.RegisterNotificationApiServices();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+if (!app.Environment.IsProduction())
+    app.UseSwagger()
+        .UseSwaggerUI();
 
-app.UseHttpsRedirection();
-
-app.MapGet("/notifications", ([FromServices] IMessageConsumer messageConsumer) =>
-    {
-        var newNotifs = messageConsumer.GetUnprocessedRatingNotifications();
-
-        return Results.Ok(newNotifs);
-    })
-    .WithOpenApi(opt => new(opt)
-    {
-        Summary = "For getting unack notifications from queue",
-        Description = "Get notifications endpoint"
-    });
+app.MapNotificationEndpoints()
+    // .UseMiddleware<LoggingMiddleware>()
+    // .UseMiddleware<ExceptionMiddleware>()
+    .UseMiddleware<RateLimitingMiddleware>()
+    .UseHttpsRedirection();
 
 app.Run();

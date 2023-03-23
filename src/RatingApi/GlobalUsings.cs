@@ -2,6 +2,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using Application;
 global using Application.Abstract;
 global using Core.Exceptions;
+global using Core.Middlewares;
 global using Domain.Requests.Ratings;
 global using Domain.Settings.RatingApi;
 global using FluentValidation;

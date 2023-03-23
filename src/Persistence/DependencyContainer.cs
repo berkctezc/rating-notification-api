@@ -18,7 +18,7 @@ public static class DependencyContainer
             .AddScoped<IRatingRepository, RatingRepository>()
             .AddScoped<IServiceProviderRepository, ServiceProviderRepository>();
 
-        SeedData.SeedAsync(connectionString).GetAwaiter().GetResult();
+        // SeedData.SeedAsync(connectionString).GetAwaiter().GetResult();
 
         return services;
     }
