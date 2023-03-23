@@ -17,10 +17,15 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGet("/notifications", ([FromServices] IMessageConsumer messageConsumer) =>
-{
-    var newNotifs = messageConsumer.GetUnprocessedRatingNotifications();
+    {
+        var newNotifs = messageConsumer.GetUnprocessedRatingNotifications();
 
-    return Results.Ok(newNotifs);
-});
+        return Results.Ok(newNotifs);
+    })
+    .WithOpenApi(opt => new(opt)
+    {
+        Summary = "For getting unack notifications from queue",
+        Description = "Get notifications endpoint"
+    });
 
 app.Run();
