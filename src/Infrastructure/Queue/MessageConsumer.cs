@@ -4,8 +4,8 @@ public class MessageConsumer : IMessageConsumer
 {
     private readonly IConnection _connection;
 
-    public MessageConsumer(IRabbitMqConnector connection)
-        => _connection = connection.GetConnection();
+    public MessageConsumer(IRabbitMqConnector connection, IOptions<Domain.Settings.NotificationApi.ServiceSettings> options)
+        => _connection = connection.GetConnection(options.Value.QConnectionString);
 
     public IEnumerable<RatingNotification> GetUnprocessedRatingNotifications()
     {

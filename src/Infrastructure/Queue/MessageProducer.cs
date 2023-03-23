@@ -4,8 +4,8 @@ public class MessageProducer : IMessageProducer
 {
     private readonly IConnection _connection;
 
-    public MessageProducer(IRabbitMqConnector connection)
-        => _connection = connection.GetConnection();
+    public MessageProducer(IRabbitMqConnector connection, IOptions<Domain.Settings.RatingApi.ServiceSettings> options)
+        => _connection = connection.GetConnection(options.Value.QConnectionString);
 
     public void SendMessage<T>(T message)
     {
