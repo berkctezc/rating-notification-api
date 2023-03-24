@@ -11,7 +11,7 @@ if (!app.Environment.IsProduction())
 
 app.MapRatingEndpoints()
     .UseMiddleware<LoggingMiddleware>()
-    // .UseMiddleware<ExceptionMiddleware>()
+    .UseMiddleware<ExceptionMiddleware>()
     .UseMiddleware<RateLimitingMiddleware>()
     .UseHttpsRedirection();
 
