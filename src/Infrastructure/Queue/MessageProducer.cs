@@ -9,13 +9,22 @@ public class MessageProducer : IMessageProducer
 
     public void SendMessage<T>(T message)
     {
-        using var channel = _connection.CreateModel();
+        try
+        {
+            Log.Logger.Information("{Message} pushed", message);
 
-        channel.QueueDeclare("ratings", durable: true, exclusive: false);
+            using var channel = _connection.CreateModel();
 
-        var jsonStr = JsonSerializer.Serialize(message);
-        var body = Encoding.UTF8.GetBytes(jsonStr);
+            channel.QueueDeclare("ratings", durable: true, exclusive: false);
 
-        channel.BasicPublish("", "ratings", body: body);
+            var jsonStr = JsonSerializer.Serialize(message);
+            var body = Encoding.UTF8.GetBytes(jsonStr);
+
+            channel.BasicPublish("", "ratings", body: body);
+        }
+        catch (Exception e)
+        {
+            Log.Logger.Error("{Message} could not be pushed with Exception: {Exception}", message, e);
+        }
     }
 }

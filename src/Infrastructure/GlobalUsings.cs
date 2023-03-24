@@ -6,3 +6,4 @@ global using Infrastructure.Queue;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Options;
 global using RabbitMQ.Client;
+global using Serilog;
