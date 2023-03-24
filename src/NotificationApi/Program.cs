@@ -10,7 +10,7 @@ if (!app.Environment.IsProduction())
         .UseSwaggerUI();
 
 app.MapNotificationEndpoints()
-    // .UseMiddleware<LoggingMiddleware>()
+    .UseMiddleware<LoggingMiddleware>()
     // .UseMiddleware<ExceptionMiddleware>()
     .UseMiddleware<RateLimitingMiddleware>()
     .UseHttpsRedirection();
