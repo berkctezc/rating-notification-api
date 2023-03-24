@@ -1,0 +1,1 @@
+## Armut / Homerun Rating and Notification API
