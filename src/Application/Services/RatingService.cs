@@ -1,6 +1,3 @@
-using Core.Dtos;
-using Infrastructure.Queue;
-
 namespace Application.Services;
 
 public class RatingService : IRatingService
@@ -19,46 +16,61 @@ public class RatingService : IRatingService
 
     public async Task<ApiResponseDto<SubmitRatingResponseModel>> SubmitRating(SubmitRatingRequestModel request)
     {
-        var user = await _userProvider.GetUser();
-
-        var response = await _repository.SubmitRating(new SubmitRatingDto
+        try
         {
-            UserId = user.Id,
-            ProviderId = request.ProviderId,
-            Rating = request.Rating
-        });
+            var user = await _userProvider.GetUser();
 
-        _messageProducer.SendMessage(new RatingNotification
-        {
-            Name = user.Name,
-            ProviderId = request.ProviderId,
-            Rating = request.Rating
-        });
-
-        return new ApiResponseDto<SubmitRatingResponseModel>
-        {
-            Data = new SubmitRatingResponseModel
+            var response = await _repository.SubmitRating(new SubmitRatingDto
             {
-                Name = user.Name,
+                UserId = user.Id,
                 ProviderId = request.ProviderId,
                 Rating = request.Rating
-            }
-        };
+            });
+
+            if (response)
+                _messageProducer.SendMessage(new RatingNotification
+                {
+                    Name = user.Name,
+                    ProviderId = request.ProviderId,
+                    Rating = request.Rating
+                });
+
+            return new ApiResponseDto<SubmitRatingResponseModel>
+            {
+                Data = new SubmitRatingResponseModel
+                {
+                    Name = user.Name,
+                    ProviderId = request.ProviderId,
+                    Rating = request.Rating
+                }
+            };
+        }
+        catch (Exception e)
+        {
+            throw new SubmitRatingException(e);
+        }
     }
 
     public async Task<ApiResponseDto<GetAverageRatingOfProviderResponseModel>> GetAverageRatingOfProvider(GetAverageRatingOfProviderRequestModel request)
     {
-        var dto = _mapper.Map<GetAverageRatingOfProviderDto>(request);
-
-        var result = await _repository.GetAverageRatingOfProvider(dto);
-
-        return new ApiResponseDto<GetAverageRatingOfProviderResponseModel>
+        try
         {
-            Data = new GetAverageRatingOfProviderResponseModel
+            var dto = _mapper.Map<GetAverageRatingOfProviderDto>(request);
+
+            var result = await _repository.GetAverageRatingOfProvider(dto);
+
+            return new ApiResponseDto<GetAverageRatingOfProviderResponseModel>
             {
-                ProviderId = dto.ProviderId,
-                AverageRating = result
-            }
-        };
+                Data = new GetAverageRatingOfProviderResponseModel
+                {
+                    ProviderId = dto.ProviderId,
+                    AverageRating = result
+                }
+            };
+        }
+        catch (Exception e)
+        {
+            throw new GetAverageRatingOfProviderException(e);
+        }
     }
 }

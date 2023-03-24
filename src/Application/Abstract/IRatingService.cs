@@ -1,5 +1,3 @@
-using Core.Dtos;
-
 namespace Application.Abstract;
 
 public interface IRatingService
