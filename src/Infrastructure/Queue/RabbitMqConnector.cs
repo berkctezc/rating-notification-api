@@ -6,7 +6,6 @@ public class RabbitMqConnector : IRabbitMqConnector
     {
         var factory = new ConnectionFactory
         {
-            // todo: move to appsettings
             Uri = new Uri(connectionString),
             VirtualHost = "/"
         };

@@ -1,5 +1,6 @@
 namespace RatingApi.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class Endpoints
 {
     public static WebApplication MapRatingEndpoints(this WebApplication app)

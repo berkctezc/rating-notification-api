@@ -1,5 +1,6 @@
 namespace NotificationApi.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class Endpoints
 {
     public static WebApplication MapNotificationEndpoints(this WebApplication app)

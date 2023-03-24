@@ -1,5 +1,6 @@
 namespace Application.Services;
 
+[ExcludeFromCodeCoverage]
 public class FakeUserProvider : IUserProvider
 {
     // todo: return authenticated user

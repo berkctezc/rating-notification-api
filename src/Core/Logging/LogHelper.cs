@@ -1,5 +1,6 @@
 namespace Core.Logging;
 
+[ExcludeFromCodeCoverage]
 public class LogHelper<T>
 {
     public static string GetLogTemplateError(LogDetail<T>? logDetail)

@@ -1,5 +1,6 @@
 namespace Core.Dtos;
 
+[ExcludeFromCodeCoverage]
 public class ApiErrorDto
 {
     public ApiErrorDto(string message, ExceptionType exceptionType)

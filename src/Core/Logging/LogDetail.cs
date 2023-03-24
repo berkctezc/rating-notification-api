@@ -1,5 +1,6 @@
 namespace Core.Logging;
 
+[ExcludeFromCodeCoverage]
 public class LogDetail<T>
 {
     public LogDetail(string requestHost, string requestProtocol, string requestMethod, string requestPath, string requestPathAndQuery, int? responseStatusCode, string correlationId)

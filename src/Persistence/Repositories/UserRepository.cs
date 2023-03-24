@@ -1,5 +1,6 @@
 namespace Persistence.Repositories;
 
+[ExcludeFromCodeCoverage]
 public class UserRepository : IUserRepository
 {
     public async Task<User> GetFirstUser()

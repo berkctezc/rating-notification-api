@@ -1,5 +1,6 @@
 namespace Domain.Constants;
 
+[ExcludeFromCodeCoverage]
 public static class OperationSystemConstants
 {
     public static string Personal(string path)
