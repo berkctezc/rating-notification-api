@@ -1,6 +1,17 @@
+global using Application.Abstract;
 global using Application.Mapper;
+global using Application.Services;
 global using Application.Validators.RatingApi;
+global using AutoFixture;
 global using AutoMapper;
+global using Core.Exceptions.RatingApi;
+global using Domain.Dtos;
+global using Domain.Entities;
 global using Domain.Requests.Ratings;
+global using FluentAssertions;
 global using FluentValidation.TestHelper;
+global using Infrastructure.Queue;
+global using NSubstitute;
+global using NSubstitute.ExceptionExtensions;
+global using Persistence.Abstract;
 global using Xunit;

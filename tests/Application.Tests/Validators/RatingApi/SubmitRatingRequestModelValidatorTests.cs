@@ -1,5 +1,3 @@
-using AutoFixture;
-
 namespace Application.Tests.Validators.RatingApi;
 
 public class SubmitRatingRequestModelValidatorTests
@@ -28,10 +26,13 @@ public class SubmitRatingRequestModelValidatorTests
     [Fact]
     public void Validator_ShouldHaveError_WhenNullOrEmpty()
     {
+        // Arrange
         var model = new SubmitRatingRequestModel();
 
+        // Act
         var result = _sut.TestValidate(model);
 
+        // Assert
         result.ShouldHaveValidationErrorFor(x => x.ProviderId);
         result.ShouldHaveValidationErrorFor(x => x.Rating);
     }
@@ -39,14 +40,17 @@ public class SubmitRatingRequestModelValidatorTests
     [Fact]
     public void Validator_ShouldNotHaveError_WhenValid()
     {
+        // Arrange
         var model = new SubmitRatingRequestModel
         {
             ProviderId = _guid,
             Rating = _validNumber
         };
 
+        // Act
         var result = _sut.TestValidate(model);
 
+        // Assert
         result.ShouldNotHaveValidationErrorFor(x => x.ProviderId);
         result.ShouldNotHaveValidationErrorFor(x => x.Rating);
     }
@@ -54,14 +58,17 @@ public class SubmitRatingRequestModelValidatorTests
     [Fact]
     public void Validator_ShouldNotHaveError_WhenInvalidRating()
     {
+        // Arrange
         var model = new SubmitRatingRequestModel
         {
             ProviderId = _guid,
             Rating = _invalidNumber
         };
 
+        // Act
         var result = _sut.TestValidate(model);
 
+        // Assert
         result.ShouldNotHaveValidationErrorFor(x => x.ProviderId);
         result.ShouldHaveValidationErrorFor(x => x.Rating);
     }
