@@ -34,4 +34,17 @@ public static class ServiceExtensions
             .AddScoped<ExceptionMiddleware>()
             .AddSingleton<RateLimitingMiddleware>()
             .AddScoped<LoggingMiddleware>();
+
+    public static void RegisterSerilog(this ILoggingBuilder logging)
+        => logging.AddSerilog(
+            new LoggerConfiguration()
+                .WriteTo
+                .File(
+                    new RenderedCompactJsonFormatter(),
+                    OperationSystemConstants.Personal("armut-notification-service"),
+                    rollingInterval: RollingInterval.Day,
+                    rollOnFileSizeLimit: true)
+                .WriteTo
+                .Console()
+                .CreateLogger());
 }
