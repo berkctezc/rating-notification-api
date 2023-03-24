@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Logging;
+using NSubstitute;
+
 namespace Core.Tests.Middlewares;
 
 public class RateLimitingMiddlewareTests
